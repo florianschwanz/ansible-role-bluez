@@ -21,3 +21,8 @@
   shell: "make"
   args:
     chdir: "/tmp/{{ bluez_artifact_dir }}"
+
+- name: Call make install
+  shell: "make install"
+  args:
+    chdir: "/tmp/{{ bluez_artifact_dir }}"
