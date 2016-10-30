@@ -7,3 +7,7 @@
 
 - name: Unarchive bluez
   unarchive: src="/tmp/{{ bluez_artifact_name }}" dest="/tmp/"
+
+- name: Install packages
+  package: name={{ item }} state=present
+  with_items: "{{ packages }}"
