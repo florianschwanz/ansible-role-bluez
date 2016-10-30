@@ -16,3 +16,8 @@
   shell: "./configure"
   args:
     chdir: "/tmp/{{ bluez_artifact_dir }}"
+
+- name: Call make
+  shell: "make"
+  args:
+    chdir: "/tmp/{{ bluez_artifact_dir }}"
