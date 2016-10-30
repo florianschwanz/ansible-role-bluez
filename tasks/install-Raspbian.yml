@@ -11,3 +11,8 @@
 - name: Install packages
   package: name={{ item }} state=present
   with_items: "{{ packages }}"
+
+- name: Call configure
+  shell: "./configure"
+  args:
+    chdir: "/tmp/{{ bluez_artifact_dir }}"
