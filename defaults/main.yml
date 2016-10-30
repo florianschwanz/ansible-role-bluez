@@ -1,1 +1,6 @@
 ---
+kernel_bluetooth_download_urL: http://www.kernel.org/pub/linux/bluetooth/
+
+bluez_artifact_version: 5.43
+bluez_artifact_name: "bluez-{{ bluez_artifact_version }}.tar.gz"
+bluez_artifact_download_url: "{{ kernel_bluetooth_download_urL }}/{{ bluez_artifact_name }}"

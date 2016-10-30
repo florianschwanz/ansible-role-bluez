@@ -1,1 +1,6 @@
 ---
+- name: Download bluez
+  get_url:
+    url: "{{ bluez_artifact_download_url }}"
+    dest: "/tmp/{{ bluez_artifact_name }}"
+    mode: 0755
