@@ -26,3 +26,6 @@
   shell: "make install"
   args:
     chdir: "/tmp/{{ bluez_artifact_dir }}"
+
+- name: Call systemctl daemon-reload
+  shell: "systemctl daemon-reload"
