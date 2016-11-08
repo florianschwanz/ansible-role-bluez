@@ -13,7 +13,7 @@
   with_items: "{{ packages }}"
 
 - name: Call configure
-  shell: "./configure"
+  shell: "./configure --prefix=/usr"
   args:
     chdir: "/tmp/{{ bluez_artifact_dir }}"
 
@@ -26,6 +26,3 @@
   shell: "make install"
   args:
     chdir: "/tmp/{{ bluez_artifact_dir }}"
-
-- name: Call systemctl daemon-reload
-  shell: "systemctl daemon-reload"
