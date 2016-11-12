@@ -20,6 +20,14 @@
   args:
     chdir: "/tmp/{{ bluez_artifact_dir }}"
 
+- name: Copy patch files
+  copy: src=files/{{ item }} dest=/tmp/{{ item }}
+  with_items: "{{ patch_files }}"
+
+- name: Apply patches
+  shell: "patch -b -p1 -d /tmp/{{ bluez_artifact_dir }}/ < /tmp/{{ item }}"
+  with_items: "{{ patch_files }}"
+
 - name: Call make
   shell: "make"
   args:
