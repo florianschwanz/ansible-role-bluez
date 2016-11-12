@@ -29,7 +29,7 @@
   with_items: "{{ patch_files }}"
 
 - name: Call make
-  shell: "make"
+  shell: "make -j4"
   args:
     chdir: "/tmp/{{ bluez_artifact_dir }}"
 
