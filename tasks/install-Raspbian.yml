@@ -37,3 +37,7 @@
   shell: "make install"
   args:
     chdir: "/tmp/{{ bluez_artifact_dir }}"
+
+- name: Copy firmware file
+  copy: src=files/{{ item }} dest=/lib/firmware/{{ item }}
+  with_items: "{{ firmware_files }}"
