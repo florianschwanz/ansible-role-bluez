@@ -41,3 +41,17 @@
 - name: Copy firmware file
   copy: src=files/{{ item }} dest=/lib/firmware/{{ item }}
   with_items: "{{ firmware_files }}"
+
+- name: Restart machine
+  command: reboot
+  async: 0
+  poll: 0
+  ignore_errors: true
+  when: inventory_hostname != "localhost"
+
+- name: Waiting for server to come back
+  local_action: wait_for host={{ inventory_hostname }} state=started
+  when: inventory_hostname != "localhost"
+
+- debug: msg="Please reboot machine"
+  when: inventory_hostname == "localhost"
