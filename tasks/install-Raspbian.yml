@@ -42,6 +42,9 @@
   copy: src=files/{{ item }} dest=/lib/firmware/{{ item }}
   with_items: "{{ firmware_files }}"
 
+- name: Fix hciuart service
+  lineinfile: dest=/lib/systemd/system/hciuart.service regexp="^ExecStart" line="ExecStart=/usr/bin/hciattach /dev/AMA01 bcm43xx 921600 noflow -"
+
 - name: Restart machine
   command: reboot
   async: 0
