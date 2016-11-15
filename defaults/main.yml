@@ -6,6 +6,10 @@ bluez_artifact_name: "bluez-{{ bluez_artifact_version }}.tar.gz"
 bluez_artifact_dir: "bluez-{{ bluez_artifact_version }}"
 bluez_artifact_download_url: "{{ kernel_bluetooth_download_urL }}/{{ bluez_artifact_name }}"
 
+uninstall_packages:
+- bluez
+- pi-bluetooth
+
 packages:
 - libusb-dev
 - libdbus-1-dev

@@ -1,6 +1,7 @@
 ---
-- name: Uninstall bluez
-  package: name=bluez state=absent
+- name: Uninstall packages
+  package: name={{ item }} state=absent
+  with_items: "{{ uninstall_packages }}"
 
 - name: Download bluez
   get_url:
