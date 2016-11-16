@@ -43,8 +43,17 @@
   copy: src=files/{{ item }} dest=/lib/firmware/{{ item }}
   with_items: "{{ firmware_files }}"
 
+- name: Check if hciuart service exists
+  stat: path=/lib/systemd/system/hciuart.service
+  register: hciuart_stat
+
 - name: Fix hciuart service
-  lineinfile: dest=/lib/systemd/system/hciuart.service regexp="^ExecStart" line="ExecStart=/usr/bin/hciattach /dev/AMA01 bcm43xx 921600 noflow -"
+  lineinfile: dest=/lib/systemd/system/hciuart.service regexp="^ExecStart" line="ExecStart=/usr/bin/hciattach /dev/ttyAMA0 bcm43xx 921600 noflow -"
+  when: hciuart_stat.stat.exists
+
+- name: Create hciuart service
+  copy: src=files/hciuart.service dest=/lib/systemd/system/hciuart.service
+  when: not hciuart_stat.stat.exists
 
 - name: Restart machine
   command: reboot
