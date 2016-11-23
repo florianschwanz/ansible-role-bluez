@@ -69,7 +69,7 @@ None.
 
     - hosts: all
       roles:
-        - { role: interoberlin.ansible-role-bluez }
+        - { role: interoberlin.bluez }
 
 ## License
 
